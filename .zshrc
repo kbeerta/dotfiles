@@ -15,3 +15,5 @@ PURE_PROMPT_SYMBOL='$'
 PURE_PROMPT_VIMCD_SYMBOL='%'
 
 prompt pure
+
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
