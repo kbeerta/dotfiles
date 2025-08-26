@@ -1,6 +1,6 @@
 font "JetBrainsMono NF" 12px
 
-output * bg $HOME/.config/sway/wallpaper.png fill
+output * bg $HOME/.config/sway/wallpaper.jpg fill
 
 bindsym Mod1+q kill
 bindsym Mod1+Shift+e exit
@@ -71,8 +71,8 @@ bar {
 
     colors {
         background #111111E6
-    	focused_workspace #FF5268E6 #FF5268E6 #333333
-    	active_workspace #DF485AE6 #DF485AE6 #333333
+    	focused_workspace #E2752F #E2752F #333333
+    	active_workspace #E2752FE6 #E2752FE6 #333333
     	inactive_workspace #111111E6 #111111E6 #DDDDDD
     }
 }
