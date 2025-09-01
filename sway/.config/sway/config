@@ -42,8 +42,6 @@ bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- -
 bindgesture swipe:left workspace next
 bindgesture swipe:right workspace prev
 
-gaps inner 5
-
 default_border none 0
 default_floating_border none 0
 
