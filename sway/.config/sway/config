@@ -42,6 +42,24 @@ bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- -
 bindgesture swipe:left workspace next
 bindgesture swipe:right workspace prev
 
+bindsym Mod1+Shift+minus move scratchpad
+bindsym Mod1+minus scratchpad show
+
+mode "resize" {
+
+    bindsym h resize shrink width 10px
+    bindsym j resize grow height 10px
+    bindsym k resize shrink height 10px
+    bindsym l resize grow width 10px
+
+    bindsym Escape mode "default"
+}
+
+bindsym Mod1+r mode "resize"
+
+bindsym Mod1+f fullscreen
+bindsym Mod1+Shift+Space floating toggle
+
 default_border none 0
 default_floating_border none 0
 
@@ -66,6 +84,7 @@ bar {
     output eDP-1
     position top
     status_command $HOME/.config/sway/status.sh
+    tray_output none
 
     colors {
         background #111111E6
