@@ -34,7 +34,8 @@ bindsym Mod1+Shift+5 move container to workspace number 5
 bindsym Mod1+Return exec alacritty
 bindsym Mod1+Space exec $HOME/.config/sway/launcher.sh
 
-bindsym Print exec sh -c 'slurp | grim -g - ~/screenshots/screenshot_$(date +%Y-%m-%d_%H%M%S).png'
+bindsym Print exec sh -c 'slurp | grim -g - - | wl-copy'
+bindsym Mod1+Print exec sh -c 'slurp | grim -g - ~/screenshots/screenshot_$(date +%Y-%m-%d_%H%M%S).png'
 
 bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
