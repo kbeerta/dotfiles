@@ -6,6 +6,9 @@ SAVEHIST=1000
 
 export EDITOR="nvim"
 
+alias vi="nvim"
+alias vim="nvim"
+
 alias ls="ls --color -F"
 
 autoload -Uz compinit; compinit
