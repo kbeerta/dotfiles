@@ -1,4 +1,4 @@
-vim.opt.fixeol = false
+vim.opt.fixeol = true
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.scrolloff = 2
@@ -10,6 +10,7 @@ vim.opt.completeopt = "menu,menuone,popup,noselect"
 vim.opt.undofile = true
 vim.opt.swapfile = false
 
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.showmode = false

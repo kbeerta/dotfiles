@@ -12,12 +12,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         if client:supports_method("textDocument/formatting") then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                buffer = args.buf,
-                callback = function()
-                    vim.lsp.buf.format({ id = client.id, bufnr = args.buf, async = true, timeout_ms = 1000 })
-                end
-            })
+            vim.keymap.set("n", "grf", function()
+                vim.lsp.buf.format({ id = client.id, bufnr = args.buf, async = true, timeout_ms = 1000 })
+            end)
         end
 
         if client:supports_method("textDocument/completion") then
