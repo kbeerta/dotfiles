@@ -1,7 +1,7 @@
 #!/bin/bash
 
 while true; do
-    time=$(date +'%H:%M %D')
+    time=$(date +'%H:%M %d/%m/%y')
     disk=$(df -h / | awk 'NR==2 {print $5}')
     connection=$(nmcli -t -f GENERAL.CONNECTION dev show | head -n1 | cut -d: -f2)
     ip_address=$(nmcli -t -f IP4.ADDRESS dev show | head -n1 | cut -d: -f2 | cut -d/ -f1)
