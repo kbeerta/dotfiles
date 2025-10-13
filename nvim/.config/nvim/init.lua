@@ -32,8 +32,6 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
-vim.o.inccommand = "split"
-
 vim.o.cursorline = true
 
 vim.o.scrolloff = 10
@@ -188,6 +186,22 @@ vim.diagnostic.config({
 
 require("blink.cmp").setup({
     keymap = { preset = "default" },
+    completion = {
+        list = {
+            selection = {
+                preselect = false
+            }
+        },
+        menu = {
+            draw = {
+                treesitter = { "lsp "}
+            }
+        },
+        documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 200
+        }
+    },
     sources = {
         default = { "lsp", "path", "snippets", "buffer" },
     },
