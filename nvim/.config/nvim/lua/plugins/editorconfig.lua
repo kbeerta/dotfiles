@@ -1,4 +1,3 @@
-
 if vim.g.editorconfig_enable == false or vim.g.editorconfig_enable == 0 then
     return
 end
@@ -14,7 +13,7 @@ editorconfig.properties.vim_insert_final_blankline = function(bufnr, val, opts)
 
     if val == "true" then
         vim.api.nvim_create_autocmd("BufWritePre", {
-            group = "custom-editorconfig",
+            group = group,
             buffer = bufnr,
             callback = function()
                 local view = vim.fn.winsaveview()
@@ -25,8 +24,8 @@ editorconfig.properties.vim_insert_final_blankline = function(bufnr, val, opts)
         })
     else
         vim.api.nvim_clear_autocmds({
+            group = group,
             event = "BufWritePre",
-            group = "custom-editorconfig",
             buffer = bufnr
         })
     end

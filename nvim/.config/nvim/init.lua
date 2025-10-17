@@ -90,7 +90,17 @@ end)
 -- :picker
 
 require("snacks").setup({
-    picker = { enabled = true },
+    picker = {
+        enabled = true,
+        icons = {
+            diagnostics = {
+                Warn = "W",
+                Error = "E",
+                Hint = "H",
+                Info = "I",
+            },
+        },
+    },
     indent = {
         enabled = true,
         animate = {
@@ -102,6 +112,7 @@ require("snacks").setup({
 vim.keymap.set("n", "<leader>ff", Snacks.picker.files)
 vim.keymap.set("n", "<leader>fr", Snacks.picker.recent)
 vim.keymap.set("n", "<leader>fb", Snacks.picker.buffers)
+vim.keymap.set("n", "<leader>fd", Snacks.picker.diagnostics)
 
 -- :lsp
 
@@ -146,7 +157,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "grD", Snacks.picker.lsp_declarations, { buffer = event.buf })
 
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
-            local highlight_augroup = vim.api.nvim_create_augroup("LspHighlight", { clear = false })
+            local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
                 buffer = event.buf,
@@ -163,7 +174,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.api.nvim_create_autocmd("LspDetach", {
                 callback = function(event2)
                     vim.lsp.buf.clear_references()
-                    vim.api.nvim_clear_autocmds({ group = "LspHighlight", buffer = event2.buf })
+                    vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
                 end,
             })
         end
@@ -173,13 +184,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- :diagnostic
 
 vim.diagnostic.config({
+    underline = true,
+    virtual_text = false,
     severity_sort = true,
-    float = { border = "rounded", source = "if_many" },
-    underline = { severity = vim.diagnostic.severity.ERROR },
-    virtual_text = {
-        source = "if_many",
-        spacing = 2,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "E",
+            [vim.diagnostic.severity.WARN] = "E",
+            [vim.diagnostic.severity.HINT] = "H",
+            [vim.diagnostic.severity.INFO] = "I",
+        },
     },
+})
+
+local diagnostic_augroup = vim.api.nvim_create_augroup("diagnostic-hover", {})
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = diagnostic_augroup,
+    callback = vim.diagnostic.open_float,
 })
 
 -- :completion
@@ -234,4 +256,3 @@ require("tokyonight").setup({
 })
 
 vim.cmd.colorscheme("tokyonight")
-
