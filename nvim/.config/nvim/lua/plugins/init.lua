@@ -1,3 +1,4 @@
+
 vim.pack.add({
 
     -- colorscheme
@@ -25,3 +26,5 @@ vim.pack.add({
     -- treesitter
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" }
 })
+
+require("plugins.editorconfig")

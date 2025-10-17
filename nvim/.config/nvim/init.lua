@@ -189,18 +189,18 @@ require("blink.cmp").setup({
     completion = {
         list = {
             selection = {
-                preselect = false
-            }
+                preselect = false,
+            },
         },
         menu = {
             draw = {
-                treesitter = { "lsp "}
-            }
+                treesitter = { "lsp " },
+            },
         },
         documentation = {
             auto_show = true,
-            auto_show_delay_ms = 200
-        }
+            auto_show_delay_ms = 200,
+        },
     },
     sources = {
         default = { "lsp", "path", "snippets", "buffer" },
@@ -234,3 +234,4 @@ require("tokyonight").setup({
 })
 
 vim.cmd.colorscheme("tokyonight")
+
