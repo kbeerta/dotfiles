@@ -38,12 +38,12 @@ vim.o.scrolloff = 10
 
 vim.o.confirm = true
 
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Hide search highlight" })
 
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Focus left window" })
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Focus top window" })
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Focus bottom window" })
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Focus right window" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
@@ -71,7 +71,7 @@ require("oil").setup({
     },
 })
 
-vim.keymap.set("n", "-", "<cmd>Oil<CR>")
+vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Oil file explorer" })
 
 require("conform").setup({
     formatters_by_ft = {
@@ -92,6 +92,25 @@ end)
 require("snacks").setup({
     picker = {
         enabled = true,
+        auto_close = false,
+        layout = {
+            preview = false,
+            layout = {
+                box = "vertical",
+                width = 0,
+                height = 0.4,
+                position = "bottom",
+                {
+                    win = "input",
+                    height = 1,
+                    border = "bottom",
+                },
+                {
+                    win = "list",
+                    border = "none",
+                },
+            },
+        },
         icons = {
             diagnostics = {
                 Warn = "W",
@@ -109,10 +128,16 @@ require("snacks").setup({
     },
 })
 
-vim.keymap.set("n", "<leader>ff", Snacks.picker.files)
-vim.keymap.set("n", "<leader>fr", Snacks.picker.recent)
-vim.keymap.set("n", "<leader>fb", Snacks.picker.buffers)
-vim.keymap.set("n", "<leader>fd", Snacks.picker.diagnostics)
+vim.keymap.set("n", "<leader>ff", Snacks.picker.files, { desc = "Find files" })
+vim.keymap.set("n", "<leader>fr", Snacks.picker.recent, { desc = "Find recent files" })
+vim.keymap.set("n", "<leader>fb", Snacks.picker.buffers, { desc = "Find buffers" })
+
+vim.keymap.set("n", "<leader>sg", Snacks.picker.grep, { desc = "Grep" })
+vim.keymap.set("n", "<leader>sb", Snacks.picker.lines, { desc = "Grep buffer lines" })
+vim.keymap.set("n", "<leader>sB", Snacks.picker.grep_buffers, { desc = "Grep open buffers" })
+
+vim.keymap.set("n", "<leader>sk", Snacks.picker.keymaps, { desc = "Search keymaps" })
+vim.keymap.set("n", "<leader>sd", Snacks.picker.diagnostics, { desc = "Search diagnostics" })
 
 -- :lsp
 
@@ -149,12 +174,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
             return
         end
 
-        vim.keymap.set("n", "grn", vim.lsp.buf.rename, { buffer = event.buf })
-        vim.keymap.set("n", "gra", vim.lsp.buf.code_action, { buffer = event.buf })
-        vim.keymap.set("n", "grr", Snacks.picker.lsp_references, { buffer = event.buf })
-        vim.keymap.set("n", "gri", Snacks.picker.lsp_implementations, { buffer = event.buf })
-        vim.keymap.set("n", "grd", Snacks.picker.lsp_definitions, { buffer = event.buf })
-        vim.keymap.set("n", "grD", Snacks.picker.lsp_declarations, { buffer = event.buf })
+        vim.keymap.set("n", "grn", vim.lsp.buf.rename, { buffer = event.buf, desc = "Rename definition" })
+        vim.keymap.set("n", "gra", vim.lsp.buf.code_action, { buffer = event.buf, desc = "Code actions" })
+        vim.keymap.set("n", "grr", Snacks.picker.lsp_references, { buffer = event.buf, desc = "Lsp references" })
+        vim.keymap.set(
+            "n",
+            "gri",
+            Snacks.picker.lsp_implementations,
+            { buffer = event.buf, desc = "Lsp implementations" }
+        )
+        vim.keymap.set("n", "grd", Snacks.picker.lsp_definitions, { buffer = event.buf, desc = "Lsp definitions" })
+        vim.keymap.set("n", "grD", Snacks.picker.lsp_declarations, { buffer = event.buf, desc = "Lsp declarations" })
 
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
