@@ -227,15 +227,6 @@ vim.diagnostic.config({
     },
 })
 
-local diagnostic_augroup = vim.api.nvim_create_augroup("diagnostic", {})
-
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    group = diagnostic_augroup,
-    callback = function()
-        vim.diagnostic.open_float({ focus = false })
-    end
-})
-
 -- :completion
 
 require("blink.cmp").setup({
