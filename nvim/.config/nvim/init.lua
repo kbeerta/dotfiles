@@ -139,6 +139,8 @@ vim.keymap.set("n", "<leader>sB", Snacks.picker.grep_buffers, { desc = "Grep ope
 vim.keymap.set("n", "<leader>sk", Snacks.picker.keymaps, { desc = "Search keymaps" })
 vim.keymap.set("n", "<leader>sd", Snacks.picker.diagnostics, { desc = "Search diagnostics" })
 
+vim.keymap.set("n", "<leader>gb", Snacks.picker.git_branches, { desc = "Pick git branches" })
+
 -- :lsp
 
 require("mason").setup()
