@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 exec alacritty \
     --class=sway_launcher \
     --title=sway_launcher \

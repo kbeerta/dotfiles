@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 while true; do
     time=$(date +'%H:%M %d/%m/%y')

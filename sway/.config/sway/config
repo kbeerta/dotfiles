@@ -1,6 +1,7 @@
 font "JetBrainsMono NF" 12px
 
-output * bg $HOME/.config/sway/wallpaper.jpg fill
+# output * bg $HOME/.config/sway/wallpapers/wallpaper.jpg fill
+exec $HOME/.config/sway/scripts/wallpaper.sh
 
 bindsym Mod1+q kill
 bindsym Mod1+Shift+e exit
@@ -32,7 +33,7 @@ bindsym Mod1+Shift+4 move container to workspace number 4
 bindsym Mod1+Shift+5 move container to workspace number 5
 
 bindsym Mod1+Return exec alacritty
-bindsym Mod1+Space exec $HOME/.config/sway/launcher.sh
+bindsym Mod1+Space exec $HOME/.config/sway/scripts/launcher.sh
 
 bindsym Print exec sh -c 'slurp | grim -g - - | wl-copy'
 bindsym Mod1+Print exec sh -c 'slurp | grim -g - ~/screenshots/screenshot_$(date +%Y-%m-%d_%H%M%S).png'
@@ -89,7 +90,7 @@ input type:keyboard {
 bar {
     output eDP-1
     position top
-    status_command $HOME/.config/sway/status.sh
+    status_command $HOME/.config/sway/scripts/status.sh
     tray_output none
 
     colors {
