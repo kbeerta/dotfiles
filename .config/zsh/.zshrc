@@ -4,7 +4,8 @@ done
 
 autoload -U compinit
 fpath=("$ZDOTDIR/plugins/zsh-completions/src" $fpath)
-rm -rf "$HOME/.cache/zsh/.zcompdump"; compinit -d "$HOME/.cache/zsh/.zcompdump"
+
+mkdir -p "$HOME/.cache/zsh"; rm -rf "$HOME/.cache/zsh/.zcompdump"; compinit -d "$HOME/.cache/zsh/.zcompdump"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
