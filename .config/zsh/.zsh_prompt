@@ -1,0 +1,1 @@
+PROMPT="%(?..%F{red}%?%f )%(!.%F{red}.%F{blue})%n%f@%m %F{white}%~%f # "
