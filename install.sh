@@ -3,7 +3,7 @@ set -eu
 
 ESCALATE=${ESCALATE:-doas}
 REPOSITORY="https://github.com/kbeerta/dotfiles"
-DEPENDENCIES="stow zsh fzf" # missing neovim-git from AUR
+DEPENDENCIES="stow zsh neovim fzf"
 
 INSTALL_DIR=${INSTALL_DIR:-$HOME/dotfiles}
 
