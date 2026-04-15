@@ -3,7 +3,7 @@ set -eu
 
 ESCALATE=${ESCALATE:-doas}
 REPOSITORY="https://github.com/kbeerta/dotfiles"
-DEPENDENCIES="stow zsh neovim"
+DEPENDENCIES="stow zsh fzf" # missing neovim-git from AUR
 
 INSTALL_DIR=${INSTALL_DIR:-$HOME/dotfiles}
 
@@ -13,23 +13,23 @@ info() {
 
 die() {
     error "Failed to install: $*";
-    exit 1; 
+    exit 1;
 }
 
 confirm() {
     printf "%s [y/n]: " "$1"
     read answer
-    case "$answer" in 
+    case "$answer" in
         y|Y) return 0;;
 	*) return 1 ;;
     esac
 }
 
-if [ ! command -v git >/dev/null 2>&1 ]; then
+if ! command -v git >/dev/null 2>&1; then
     die "git is not installed"
 fi
 
-if [ command -v pacman >/dev/null 2>&1 ] && confirm "Automatically install missing dependencies?"; then
+if command -v pacman >/dev/null 2>&1 && confirm "Automatically install missing dependencies?"; then
     info "Checking dependencies";
 
     MISSING=""
