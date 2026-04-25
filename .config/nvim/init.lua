@@ -26,6 +26,7 @@ vim.opt.colorcolumn = "80,120"
 vim.opt.hlsearch = true
 -- vim.opt.termguicolors = true
 
+vim.opt.swapfile = false
 vim.opt.undofile = true
 
 vim.keymap.set({ "n" }, "<Esc>", "<CMD>nohlsearch<CR>", { desc = "Clear search highlight" })
