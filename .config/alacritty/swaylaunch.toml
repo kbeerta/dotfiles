@@ -1,0 +1,9 @@
+[window]
+padding = { x = 25, y = 25 }
+
+[colors.primary]
+background = "#111111"
+foreground = "#ffffff"
+
+[general]
+import = ["$HOME/.config/alacritty/alacritty.toml"]

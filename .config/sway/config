@@ -1,0 +1,83 @@
+exec mako
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+output * bg $HOME/.config/sway/wallpaper.jpg fill
+
+gaps outer 50
+gaps inner 25
+
+default_border none
+floating_modifier Mod1 normal
+
+input type:touchpad {
+    tap enabled
+    dwt enabled
+    natural_scroll enabled
+}
+
+input type:keyboard {
+    repeat_rate 25
+    repeat_delay 250
+}
+
+bindsym Mod1+q kill
+bindsym Mod1+Shift+e exit
+bindsym Mod1+Shift+r reload
+
+bindsym Mod1+Return exec alacritty -e distrobox enter development
+bindsym Mod1+Shift+Return exec alacritty
+bindsym Mod1+Space exec alacritty --title "swaylaunch" --config-file $HOME/.config/alacritty/swaylaunch.toml -e "$HOME/.local/bin/swaylaunch"
+
+bindsym Mod1+f floating toggle
+
+bindsym Mod1+h focus left
+bindsym Mod1+j focus down
+bindsym Mod1+k focus up
+bindsym Mod1+l focus right
+
+bindsym Mod1+Shift+h move left
+bindsym Mod1+Shift+j move down
+bindsym Mod1+Shift+k move up
+bindsym Mod1+Shift+l move right
+
+bindsym Mod1+1 workspace number 1
+bindsym Mod1+2 workspace number 2
+bindsym Mod1+3 workspace number 3
+bindsym Mod1+4 workspace number 4
+bindsym Mod1+5 workspace number 5
+
+bindsym Mod1+Shift+1 move container to workspace number 1
+bindsym Mod1+Shift+2 move container to workspace number 2
+bindsym Mod1+Shift+3 move container to workspace number 3
+bindsym Mod1+Shift+4 move container to workspace number 4
+bindsym Mod1+Shift+5 move container to workspace number 5
+
+bindsym Mod1+r mode "resize"
+
+mode "resize" {
+    bindsym h resize shrink width 10 px
+    bindsym j resize grow height 10 px
+    bindsym k resize shrink height 10 px
+    bindsym l resize grow width 10 px
+
+    bindsym Escape mode "default"
+}
+
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+ --limit 1
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- --limit 1
+
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+
+font pango:Fira Code 10
+
+for_window [title="swaylaunch"] {
+    sticky enable
+    floating enable
+    resize set width 600 px height 64 px
+}
+
+include /etc/sway/config.d/*

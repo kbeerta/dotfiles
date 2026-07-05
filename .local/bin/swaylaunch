@@ -1,0 +1,28 @@
+#!/bin/bash
+
+clear
+read -p "> " cmd
+
+[ -z "$cmd" ] && exit 0
+
+base=$(echo "$cmd" | awk '{print $1}')
+args=${cmd#"$base"}
+
+if [[ "$cmd" =~ \.(jpg|jpeg|png|gif|webp)$ ]]; then
+    swaymsg exec "swayimg $cmd"
+    exit 0
+fi
+
+if command -v "$base" &> /dev/null; then
+    swaymsg exec "$cmd"
+    exit 0
+fi
+
+appid=$(flatpak list --columns=application | grep -i "\.${base}" | head -n 1)
+
+if [ -n "$appid" ]; then
+    swaymsg exec "flatpak run $appid$args"
+    exit 0
+fi
+
+notify-send -u critical "Error" "Application '$cmd' wasn't found."
