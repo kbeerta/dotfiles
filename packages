@@ -1,10 +1,9 @@
 zsh
-
 age
 git
 neovim
-
 sway
+sway-branding-upstream
 mako
 seatd
 swaybg
@@ -14,14 +13,11 @@ alacritty
 brightnessctl
 xdg-desktop-portal
 xdg-desktop-portal-wlr
-
 pipewire
 wireplumber
 pipewire-alsa
-pipewire-pulseaudi
-
+pipewire-pulseaudio
 podman
 flatpak
 distrobox
-
 fira-code-fonts

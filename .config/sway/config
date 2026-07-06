@@ -25,7 +25,7 @@ bindsym Mod1+q kill
 bindsym Mod1+Shift+e exit
 bindsym Mod1+Shift+r reload
 
-bindsym Mod1+Return exec alacritty -e distrobox enter development
+bindsym Mod1+Return exec alacritty -e distrobox enter dev
 bindsym Mod1+Shift+Return exec alacritty
 bindsym Mod1+Space exec alacritty --title "swaylaunch" --config-file $HOME/.config/alacritty/swaylaunch.toml -e "$HOME/.local/bin/swaylaunch"
 
