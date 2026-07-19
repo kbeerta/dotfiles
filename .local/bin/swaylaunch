@@ -18,10 +18,8 @@ if command -v "$base" &> /dev/null; then
     exit 0
 fi
 
-appid=$(flatpak list --columns=application | grep -i "\.${base}" | head -n 1)
-
-if [ -n "$appid" ]; then
-    swaymsg exec "flatpak run $appid$args"
+if distrobox-enter -n gui -- command -v "$base" &> /dev/null; then
+    swaymsg exec "distrobox-enter -n gui -- $cmd"
     exit 0
 fi
 
