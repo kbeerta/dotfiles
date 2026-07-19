@@ -18,7 +18,6 @@ pipewire
 wireplumber
 pipewire-alsa
 pipewire-pulseaudio
-dbus-x11
 podman
 distrobox
 fira-code-fonts
