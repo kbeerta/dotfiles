@@ -75,7 +75,7 @@ font pango:Fira Code 10
 for_window [title="swaylaunch"] {
     sticky enable
     floating enable
-    resize set width 600 px height 64 px
+    resize set width 600 px height 72 px
 }
 
 include /etc/sway/config.d/*
