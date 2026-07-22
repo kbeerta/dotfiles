@@ -1,5 +1,9 @@
 exec mako
 
+exec_always {
+    gsettings org.gnome.desktop.interface color-scheme 'prefer-dark'
+}
+
 output * bg $HOME/.config/sway/wallpaper.jpg fill
 
 gaps outer 50
