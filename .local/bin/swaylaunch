@@ -23,4 +23,4 @@ if distrobox-enter -n gui -- command -v "$base" &> /dev/null; then
     exit 0
 fi
 
-notify-send -u critical "Error" "Application '$cmd' wasn't found."
+notify-send -u critical "Application not found" "'$cmd' couldn't be launched because it wasn't found."

@@ -14,9 +14,13 @@ brightnessctl
 xdg-desktop-portal
 xdg-desktop-portal-wlr
 pipewire
-wireplumber
-pipewire-alsa
-pipewire-pulseaudio
 podman
 distrobox
 fira-code-fonts
+
+wireplumber
+pipewire-alsa
+pipewire-pulseaudio
+
+alsa-sof-firmware
+iwlwifi-mvm-firmware

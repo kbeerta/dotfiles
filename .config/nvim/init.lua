@@ -59,10 +59,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 })
 
-for _, config in ipairs(vim.lsp.get_configs()) do
-    local cmd = config.cmd
-    local name = config.name
-    if cmd and type(cmd) == "table" and type(cmd[1]) == "string" and vim.fn.exepath(cmd[1]) ~= "" then
-        vim.lsp.enable(name)
-    end
+local servers = {}
+for _, file in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+    local server_name = vim.fn.fnamemodify(file, ":t:r")
+    table.insert(servers, server_name)
 end
+
+vim.lsp.enable(servers)

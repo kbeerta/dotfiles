@@ -3,3 +3,5 @@ border-size=0
 text-color=#ffffff
 background-color=#111111
 default-timeout=5000
+anchor=top-center
+outer-margin=25, 25, 0, 0
