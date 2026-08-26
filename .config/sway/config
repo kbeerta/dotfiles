@@ -12,6 +12,20 @@ gaps inner 25
 default_border none
 floating_modifier Mod1 normal
 
+# bar {
+#     height 25
+#     mode hide
+#     modifier Mod1
+#     position top
+#     gaps 25 75
+#     workspace_buttons no
+#     status_command while swaystatus; do sleep 1; done
+#
+#     colors {
+#         background #000000
+#     }
+# }
+
 input type:touchpad {
     tap enabled
     dwt enabled

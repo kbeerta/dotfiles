@@ -30,11 +30,13 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.smarttab = true
 
+vim.opt.foldlevel = 99
+
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "80,120"
 
 vim.opt.hlsearch = true
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 
 vim.opt.swapfile = false
 vim.opt.undofile = true
@@ -66,3 +68,31 @@ for _, file in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
 end
 
 vim.lsp.enable(servers)
+
+-- :treesitter
+
+vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*', -- Matches every filetype
+  callback = function()
+    local lang = vim.bo.filetype
+    if vim.treesitter.query.get(lang, "highlights") then
+      vim.treesitter.start()
+    end
+  end,
+})
+
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldmethod = "expr"
+
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+-- :picker
+
+vim.pack.add({ "https://github.com/echasnovski/mini.pick" })
+require("mini.pick").setup()
+
+vim.keymap.set("n", "<leader>ff", "<CMD>Pick files<CR>", { desc = "Find files" })
+vim.keymap.set("n", "<leader>fb", "<CMD>Pick buffers<CR>", { desc = "Find buffers" })
+vim.keymap.set("n", "<leader>fg", "<CMD>Pick grep_live<CR>", { desc = "Live grep" })
