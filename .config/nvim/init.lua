@@ -6,7 +6,6 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "None" })
 
 -- :keymaps
 
-vim.keymap.set({ "n" }, "-", "<CMD>Ex<CR>", { desc = "Open netrw" })
 vim.keymap.set({ "n" }, "<Esc>", "<CMD>nohlsearch<CR>", { desc = "Clear search highlight" })
 
 -- :options
@@ -88,11 +87,28 @@ vim.opt.foldmethod = "expr"
 
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
+-- :explorer
+vim.pack.add({ "https://github.com/echasnovski/mini.icons" })
+vim.pack.add({ "https://github.com/echasnovski/mini.files" })
+
+require("mini.icons").setup({})
+require("mini.files").setup({})
+
+vim.keymap.set({ "n" }, "-", MiniFiles.open, { desc = "Open netrw" })
+
 -- :picker
 
 vim.pack.add({ "https://github.com/echasnovski/mini.pick" })
-require("mini.pick").setup()
+
+require("mini.pick").setup({
+    source = {
+        show = function(buf_id, items, query)
+            require("mini.pick").default_show(buf_id, items, query, { show_icons = false })
+        end
+    }
+})
 
 vim.keymap.set("n", "<leader>ff", "<CMD>Pick files<CR>", { desc = "Find files" })
 vim.keymap.set("n", "<leader>fb", "<CMD>Pick buffers<CR>", { desc = "Find buffers" })
 vim.keymap.set("n", "<leader>fg", "<CMD>Pick grep_live<CR>", { desc = "Live grep" })
+vim.keymap.set("n", "<leader>fr", "<CMD>Pick resume<CR>", { desc = "Resume latest picker" })
