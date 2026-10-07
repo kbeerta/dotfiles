@@ -21,3 +21,4 @@ mise
 age
 openresolv
 surf
+wl-clipboard
